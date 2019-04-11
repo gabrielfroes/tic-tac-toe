@@ -1,16 +1,29 @@
+body,html{
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .game {
-    width: 600px;
+  background-color: #34495e;
+  border: 6px solid #2c3e50;
+  border-radius: 10px;
+  color: #fff;
+  display: grid;
+  grid-template: repeat(3, 1fr) / repeat(3, 1fr);
 	height: 600px;
 	margin: 0 auto;
-    background-color: #34495e;
-    color: #fff;
-    border: 6px solid #2c3e50;
-    border-radius: 10px;
-	display: grid;
-	grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+  width: 600px;
 }
 
 .game > div {
+  align-items: center;
   border: 6px solid #2c3e50;
   border-radius: 2px;
   font-family: Helvetica;
@@ -18,5 +31,25 @@
   font-size: 4em;
   display: flex;
   justify-content: center;
-  align-items: center;
+}
+
+.startButton{
+  background-color: #2DBF64;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  font-size: 15px;
+  height: 50px;
+  margin-top: 20px;
+  transition: .2s ease;
+  width: 200px;
+}
+
+.startButton:hover{
+  background-color: #3ECF75;
+}
+
+.startButton:active{
+  transform: translateY(3px);
 }
