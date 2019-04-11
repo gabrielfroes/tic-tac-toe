@@ -1,13 +1,45 @@
 .game {
     width: 600px;
-	height: 600px;
-	margin: 0 auto;
+	  height: 600px;
+  	margin: 0;
     background-color: #34495e;
     color: #fff;
     border: 6px solid #2c3e50;
     border-radius: 10px;
-	display: grid;
-	grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+	  display: grid;
+	  grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+}
+
+.players-form{
+  width: 300px;
+  padding: 50px;
+}
+
+.players-form > input{
+  width: 100%;
+}
+
+.container{
+  margin:0;
+  display: flex;
+}
+
+.title{
+  text-align: center;
+}
+
+.btn{
+  margin-top: 10px;
+ width: 100%;
+}
+
+.panel{
+  width: 300px;
+  padding: 50px;
+}
+
+.panel > h2{
+  text-align: center;
 }
 
 .game > div {
