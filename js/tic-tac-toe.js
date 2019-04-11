@@ -34,8 +34,9 @@ const tic_tac_toe = {
             this.board[position] = this.symbols.options[this.symbols.turn_index];
             this.draw();
             let winning_sequences_index = this.check_winning_sequences( this.symbols.options[this.symbols.turn_index] );
-            if (winning_sequences_index >= 0){
+            if (winning_sequences_index >= 0  || !this.board.includes('')){
                 this.game_is_over();
+                this.start();
             } else{
                 this.symbols.change();
             }
