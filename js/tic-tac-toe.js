@@ -53,6 +53,7 @@ const tic_tac_toe = {
                 this.board[ this.winning_sequences[i][1] ] == simbol &&
                 this.board[ this.winning_sequences[i][2] ] == simbol) {
                 console.log('winning sequences INDEX:' + i);
+                this.highlight_winning_sequence(i);
                 return i;
             }
         };
@@ -74,9 +75,21 @@ const tic_tac_toe = {
         let content = '';
 
         for ( i in this.board ) {
-            content += '<div onclick="tic_tac_toe.make_play(' + i + ')">' + this.board[i] + '</div>';
+            content += '<div onclick="tic_tac_toe.make_play(' + i + ')" id="winPos' + i + '">' + 
+                            this.board[i] + 
+                        '</div>';
         };
 
         this.container_element.innerHTML = content;
+    },
+
+    highlight_winning_sequence: function(sequence_id) {
+        for (i in this.winning_sequences[sequence_id]) {
+            this.highlight_item(this.winning_sequences[sequence_id][i]);
+        }
+    },
+
+    highlight_item: function(item_id) {
+        document.querySelector('#winPos'+item_id).classList.add('winningPosition');
     },
 };
