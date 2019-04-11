@@ -24,11 +24,11 @@ const tic_tac_toe = {
                     ],
 
     // FUNCTIONS
-    init: function(container) {
+    init(container) {
         this.container_element = container;
     },
 
-    make_play: function(position) {
+    make_play(position) {
         if (this.gameover) return false;
         if (this.board[position] === ''){
             this.board[position] = this.symbols.options[this.symbols.turn_index];
@@ -47,7 +47,7 @@ const tic_tac_toe = {
         }
     },
 
-    check_winning_sequences: function(simbol) {
+    check_winning_sequences(simbol) {
 
         for ( i in this.winning_sequences ) {
             if (this.board[ this.winning_sequences[i][0] ] == simbol  &&
@@ -60,24 +60,18 @@ const tic_tac_toe = {
         return -1;
     },
 
-    game_is_over: function() {
+    game_is_over() {
         this.gameover = true;
         console.log('GAME OVER');
     },
 
-    start: function() {
+    start() {
         this.board.fill('');
         this.draw();
         this.gameover = false;       
     },
 
-    draw: function() {
-        let content = '';
-
-        for ( i in this.board ) {
-            content += '<div onclick="tic_tac_toe.make_play(' + i + ')">' + this.board[i] + '</div>';
-        };
-
-        this.container_element.innerHTML = content;
+    draw() {
+        this.container_element.innerHTML = this.board.map((elemento, indice) => `<div onclick="tic_tac_toe.make_play('${indice}')"> ${elemento} </div>`).reduce((content, current) => content + current);
     },
 };
