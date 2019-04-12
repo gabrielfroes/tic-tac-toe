@@ -1,11 +1,11 @@
 .game {
-    width: 600px;
+  width: 600px;
 	height: 600px;
 	margin: 0 auto;
-    background-color: #34495e;
-    color: #fff;
-    border: 6px solid #2c3e50;
-    border-radius: 10px;
+  background-color: #34495e;
+  color: #fff;
+  border: 6px solid #2c3e50;
+  border-radius: 10px;
 	display: grid;
 	grid-template: repeat(3, 1fr) / repeat(3, 1fr);
 }
@@ -19,4 +19,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.btn {
+  position: absolute;
+  top:20px;
+  margin:20px;
+  padding:15px;
+  border:none;
+  border-radius: 0.50rem;
+  background-color: #34495e;
+  text-decoration: none;
+  color:#fff;
+  font-size:15pt;
 }
