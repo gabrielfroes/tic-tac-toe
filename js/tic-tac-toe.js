@@ -3,7 +3,7 @@ const tic_tac_toe = {
 
     // ATTRIBUTES
     board: ['','','','','','','','',''],
-    simbols: {
+    symbols: {
                 options: ['O','X'],
                 turn_index: 0,
                 change: function(){
@@ -28,13 +28,13 @@ const tic_tac_toe = {
     make_play: function(position) {
         if (this.gameover) return false;
         if (this.board[position] === ''){
-            this.board[position] = this.simbols.options[this.simbols.turn_index];
-            let winning_sequences_index = this.check_winning_sequences( this.simbols.options[this.simbols.turn_index] );
+            this.board[position] = this.symbols.options[this.symbols.turn_index];
+            let winning_sequences_index = this.check_winning_sequences( this.symbols.options[this.symbols.turn_index] );
             if (winning_sequences_index >= 0){
                 this.setWinnerSequenceIndex(winning_sequences_index);
                 this.game_is_over();
             } else{
-                this.simbols.change();
+                this.symbols.change();
             }
             return true;
         }
