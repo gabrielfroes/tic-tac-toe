@@ -24,17 +24,14 @@ const tic_tac_toe = {
                     ],
 
     // FUNCTIONS
-    init: function(container) {
-        this.container_element = container;
-    },
-
+    
     make_play: function(position) {
         if (this.gameover) return false;
         if (this.board[position] === ''){
             this.board[position] = this.symbols.options[this.symbols.turn_index];
-            this.draw();
             let winning_sequences_index = this.check_winning_sequences( this.symbols.options[this.symbols.turn_index] );
             if (winning_sequences_index >= 0){
+                this.setWinnerSequenceIndex(winning_sequences_index);
                 this.game_is_over();
             } else{
                 this.symbols.change();
@@ -66,17 +63,26 @@ const tic_tac_toe = {
 
     start: function() {
         this.board.fill('');
-        this.draw();
         this.gameover = false;       
+        this.setWinnerSequenceIndex(null);
     },
 
-    draw: function() {
-        let content = '';
-
-        for ( i in this.board ) {
-            content += '<div onclick="tic_tac_toe.make_play(' + i + ')">' + this.board[i] + '</div>';
-        };
-
-        this.container_element.innerHTML = content;
+    //INTERFACES TO RENDER-CORE
+    winner_sequence: null,
+    isGameover: function(){
+        return this.gameover
     },
+    getBoardPosition: function(position){
+        return this.board[position];
+    },
+    setWinnerSequenceIndex(position){
+        this.winner_sequence = position;
+    },
+    getWinnerSequence: function(){
+        return this.winning_sequences[this.winner_sequence];
+    },
+    executeMakePlay: function(position){
+        this.make_play(position);
+    }
+
 };

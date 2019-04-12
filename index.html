@@ -9,11 +9,14 @@
 </head>
 <body>
     
-    <div class='game'></div>
+    <div class='game'>
+        <canvas id="render" width="600" height="600"></canvas>
+    </div>
 
+    <script src="js/core.js"></script>
     <script src="js/tic-tac-toe.js"></script>
     <script>
-        tic_tac_toe.init( document.querySelector('.game') );
+        core.initialize(tic_tac_toe, "#render");
         tic_tac_toe.start();
     </script>
     
