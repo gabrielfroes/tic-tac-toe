@@ -2,15 +2,38 @@
 const tic_tac_toe = {
 
     // ATTRIBUTES
-    board: ['','','','','','','','',''],
-    symbols: {
-                options: ['O','X'],
+    board: {
+        positions: ['','','','','','','','',''],
+        boardElement: document.querySelector('.game'),
+
+        setPosition: function(position, player){
+            this.positions[position] = player;
+            this.draw();
+        },
+        init: function() {
+            this.positions.fill('');
+            this.draw();
+        },
+        draw: function() {
+            let content = '';
+    
+            for ( i in this.positions ) {
+                content += `<div onclick="tic_tac_toe.make_play(${i})">${this.positions[i]}</div>`;
+            };
+    
+            this.boardElement.innerHTML = content;
+        }
+    },
+    players: {
+                player_sign: ['O','X'],
                 turn_index: 0,
                 change: function(){
                     this.turn_index = ( this.turn_index === 0 ? 1:0 );
+                },
+                getCurrentPlayer: function(){
+                    return this.player_sign[this.turn_index];
                 }
             },
-    container_element: null,
     gameover: false,
     winning_sequences: [
                         [0,1,2],
@@ -24,39 +47,32 @@ const tic_tac_toe = {
                     ],
 
     // FUNCTIONS
-    init: function(container) {
-        this.container_element = container;
-    },
-
     make_play: function(position) {
         if (this.gameover) return false;
-        if (this.board[position] === ''){
-            this.board[position] = this.symbols.options[this.symbols.turn_index];
-            this.draw();
-            let winning_sequences_index = this.check_winning_sequences( this.symbols.options[this.symbols.turn_index] );
-            if (winning_sequences_index >= 0){
-                this.game_is_over();
-            } else{
-                this.symbols.change();
-            }
-            return true;
+        if (this.board.positions[position] !== '') return false;
+        
+        this.board.setPosition(position, this.players.getCurrentPlayer())
+        
+        let winner = this.check_winning_sequences_for( this.players.getCurrentPlayer() );
+        if (winner){
+            this.game_is_over();
+        } else{
+            this.players.change();
         }
-        else {
-            return false;
-        }
+        return true;
     },
 
-    check_winning_sequences: function(simbol) {
+    check_winning_sequences_for: function(currentPlayer) {
 
         for ( i in this.winning_sequences ) {
-            if (this.board[ this.winning_sequences[i][0] ] == simbol  &&
-                this.board[ this.winning_sequences[i][1] ] == simbol &&
-                this.board[ this.winning_sequences[i][2] ] == simbol) {
+            if (this.board.positions[ this.winning_sequences[i][0] ] == currentPlayer  &&
+                this.board.positions[ this.winning_sequences[i][1] ] == currentPlayer &&
+                this.board.positions[ this.winning_sequences[i][2] ] == currentPlayer) {
                 console.log('winning sequences INDEX:' + i);
-                return i;
+                return true;
             }
         };
-        return -1;
+        return false;
     },
 
     game_is_over: function() {
@@ -65,18 +81,7 @@ const tic_tac_toe = {
     },
 
     start: function() {
-        this.board.fill('');
-        this.draw();
+        this.board.init();
         this.gameover = false;       
-    },
-
-    draw: function() {
-        let content = '';
-
-        for ( i in this.board ) {
-            content += '<div onclick="tic_tac_toe.make_play(' + i + ')">' + this.board[i] + '</div>';
-        };
-
-        this.container_element.innerHTML = content;
-    },
+    }
 };
