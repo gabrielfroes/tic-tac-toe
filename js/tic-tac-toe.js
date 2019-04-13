@@ -35,7 +35,7 @@ const tic_tac_toe = {
             this.draw();
             let winning_sequences_index = this.check_winning_sequences( this.symbols.options[this.symbols.turn_index] );
             if (winning_sequences_index >= 0){
-                this.game_is_over();
+                this.game_is_over(winning_sequences_index);
             } else{
                 this.symbols.change();
             }
@@ -46,12 +46,12 @@ const tic_tac_toe = {
         }
     },
 
-    check_winning_sequences: function(simbol) {
+    check_winning_sequences: function(symbol) {
 
         for ( i in this.winning_sequences ) {
-            if (this.board[ this.winning_sequences[i][0] ] == simbol  &&
-                this.board[ this.winning_sequences[i][1] ] == simbol &&
-                this.board[ this.winning_sequences[i][2] ] == simbol) {
+            if (this.board[ this.winning_sequences[i][0] ] == symbol  &&
+                this.board[ this.winning_sequences[i][1] ] == symbol &&
+                this.board[ this.winning_sequences[i][2] ] == symbol) {
                 console.log('winning sequences INDEX:' + i);
                 return i;
             }
@@ -59,8 +59,13 @@ const tic_tac_toe = {
         return -1;
     },
 
-    game_is_over: function() {
+    game_is_over: function(won_index) {
         this.gameover = true;
+        this.clear();
+        this.board[this.winning_sequences[won_index][0]] = 'E';
+        this.board[this.winning_sequences[won_index][1]] = 'N';
+        this.board[this.winning_sequences[won_index][2]] = 'D';
+        this.draw();
         console.log('GAME OVER');
     },
 
@@ -79,4 +84,8 @@ const tic_tac_toe = {
 
         this.container_element.innerHTML = content;
     },
+
+    clear: function() {
+        this.board.fill('');
+    }
 };
