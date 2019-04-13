@@ -51,7 +51,7 @@ const tic_tac_toe = {
         if (this.gameover) return false;
         if (this.board.positions[position] !== '') return false;
         
-        this.board.setPosition(position, this.players.getCurrentPlayer())
+        this.board.setPosition(position, this.players.getCurrentPlayer());
         
         let winner = this.check_winning_sequences_for( this.players.getCurrentPlayer() );
         if (winner){
@@ -62,12 +62,12 @@ const tic_tac_toe = {
         return true;
     },
 
-    check_winning_sequences_for: function(currentPlayer) {
+    check_winning_sequences_for: function(player) {
 
         for ( i in this.winning_sequences ) {
-            if (this.board.positions[ this.winning_sequences[i][0] ] == currentPlayer  &&
-                this.board.positions[ this.winning_sequences[i][1] ] == currentPlayer &&
-                this.board.positions[ this.winning_sequences[i][2] ] == currentPlayer) {
+            if (this.board.positions[ this.winning_sequences[i][0] ] == player  &&
+                this.board.positions[ this.winning_sequences[i][1] ] == player &&
+                this.board.positions[ this.winning_sequences[i][2] ] == player) {
                 console.log('winning sequences INDEX:' + i);
                 return true;
             }
