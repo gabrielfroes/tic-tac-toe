@@ -25,7 +25,7 @@ const tic_tac_toe = {
         }
     },
     players: {
-                player_sign: ['O','X'],
+                player_sign: ['⭕','❌'],
                 turn_index: 0,
                 change: function(){
                     this.turn_index = ( this.turn_index === 0 ? 1:0 );
