@@ -1,14 +1,14 @@
 // TIC TAC TOE
 const tic_tac_toe = {
     // ATTRIBUTES
-    board: ['', '', '', '', '', '', '', '', ''],
-    simbols: {
-        options: ['O', 'X'],
-        turn_index: 0,
-        change: function () {
-            this.turn_index = (this.turn_index === 0 ? 1 : 0);
-        }
-    },
+    board: ['','','','','','','','',''],
+    symbols: {
+                options: ['O','X'],
+                turn_index: 0,
+                change: function(){
+                    this.turn_index = ( this.turn_index === 0 ? 1:0 );
+                }
+            },
     container_element: null,
     gameover: false,
     winning_sequences: [
@@ -29,14 +29,14 @@ const tic_tac_toe = {
 
     make_play: function (position) {
         if (this.gameover) return false;
-        if (this.board[position] === '') {
-            this.board[position] = this.simbols.options[this.simbols.turn_index];
+        if (this.board[position] === ''){
+            this.board[position] = this.symbols.options[this.symbols.turn_index];
             this.draw();
-            let winning_sequences_index = this.check_winning_sequences(this.simbols.options[this.simbols.turn_index]);
-            if (winning_sequences_index >= 0) {
+            let winning_sequences_index = this.check_winning_sequences( this.symbols.options[this.symbols.turn_index] );
+            if (winning_sequences_index >= 0){
                 this.game_is_over();
-            } else {
-                this.simbols.change();
+            } else{
+                this.symbols.change();
             }
             return true;
         } else {
