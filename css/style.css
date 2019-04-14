@@ -1,22 +1,135 @@
+/* 
+  Design: by github - @t-heu
+*/
+
+body {
+  background: #14BDAC;
+  margin: 0;
+}
+
 .game {
-    width: 600px;
-	height: 600px;
+  width: 300px;
+	height: 300px;
 	margin: 0 auto;
-    background-color: #34495e;
-    color: #fff;
-    border: 6px solid #2c3e50;
-    border-radius: 10px;
+  background-color: #15BDAC;
+  color: #fff;
+  border-radius: 1px;
 	display: grid;
-	grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+	grid-template: repeat(3, 2fr) / repeat(3, 1fr);
+}
+
+.game > div:nth-child(1) {
+  border: none;
+  border-bottom: 6px solid #0da192;
+  border-right: 6px solid #0da192;
+}
+
+.game > div:nth-child(2) {
+  border: none;
+  border-bottom: 6px solid #0da192;
+  border-right: 6px solid #0da192;
+}
+
+.game > div:nth-child(3) {
+  border: none;
+  border-bottom: 6px solid #0da192;
+}
+
+.game > div:nth-child(4) {
+  border: none;
+  border-bottom: 6px solid #0da192;
+  border-right: 6px solid #0da192;
+}
+
+.game > div:nth-child(5) {
+  border: none;
+  border-bottom: 6px solid #0da192;
+  border-right: 6px solid #0da192;
+}
+
+.game > div:nth-child(6) {
+  border: none;
+  border-bottom: 6px solid #0da192;
+}
+
+.game > div:nth-child(7) {
+  border: none;
+  border-right: 6px solid #0da192;
+}
+
+.game > div:nth-child(8) {
+  border: none;
+  border-right: 6px solid #0da192;
+}
+
+.game > div:nth-child(9) {
+  border: none;
 }
 
 .game > div {
-  border: 6px solid #2c3e50;
-  border-radius: 2px;
+  border: none;
   font-family: Helvetica;
   font-weight: bold;
+  color: #F1EAD5;
   font-size: 4em;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+footer {
+  margin: 1em;
+}
+
+.panel, .caixa {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 1em 0;
+}
+
+.panel input {
+  background: #f5f5fa;
+  padding: .6em 1em .5em;
+  box-shadow: #ddd inset 1px 1px 0 2px;
+  font-size: 1.1em;
+  border: #f5f5fa solid 2px;
+  font-family: monospace;
+}
+
+.game-narration {
+  margin: 0;
+  background: #f5f5fa;
+  padding: .6em 1em .5em;
+  box-shadow: #ddd inset 1px 1px 0 2px;
+  font-size: 1.1em;
+  border: #f5f5fa solid 2px;
+  font-family: monospace;
+}
+
+#sessao {
+  background: #f5f5fa;
+  padding: .6em 1em .5em;
+  box-shadow: #ddd inset 1px 1px 0 2px;
+  font-size: 1.1em;
+  border: #f5f5fa solid 2px;
+  font-family: monospace;
+}
+
+button {
+  display: inline-block;
+  outline: 0;
+  margin-right: 1em;
+  color: #0da192;
+  font-weight: 500;
+  background: #f5f5fa;
+  border: 1px solid #eee;
+  padding: .5em 1.2em;
+  border-radius: 2px;
+  box-shadow: #ddd 1px 1px 0 2px;
+}
+
+button:hover {
+  box-shadow: #ddd 1px 1px 0 1px;
 }
