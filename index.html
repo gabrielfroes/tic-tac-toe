@@ -4,18 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Tic Tac Toe</title>
+    <title>jogo da velha</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    
-    <div class='game'></div>
-
-    <script src="js/tic-tac-toe.js"></script>
-    <script>
-        tic_tac_toe.init( document.querySelector('.game') );
-        tic_tac_toe.start();
-    </script>
-    
+  <article class="panel">
+     <p class="game-narration">Wating for game start...</p>
+    <form class="caixa">
+      <input id="x_campo" type="text" placeholder="name ✕" name="xx" required>
+      <input style="margin-bottom: 1em;" id="o_campo" type="text" placeholder="name 〇" name="oo" required> 
+      
+      <div>
+        <button type="button" id="play" onclick=" tic_tac_toe.start()">PLAY</button>
+        <button type="button" onclick="pc()">pc</button>
+        <button type="button" onclick="friend()">game friend</button>
+      </div>
+    </form> 
+  </article>
+  
+  <!--
+  <section class="a">
+    <h1 id="sessao">00:00</h1>
+  </section>
+  -->
+  
+  <div class='game'></div>
+  
+  <script src="js/tic-tac-toe.js"></script>
+  <script>
+  function pc() {
+    tic_tac_toe.vez = true;
+  }
+  
+  function friend() {
+    tic_tac_toe.vez = false;
+  }
+  </script>
 </body>
 </html>
