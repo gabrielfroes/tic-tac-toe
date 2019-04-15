@@ -37,6 +37,7 @@ const tic_tac_toe = {
             if (winning_sequences_index >= 0){
                 this.game_is_over();
             } else{
+                this.on_make_play();
                 this.symbols.change();
             }
             return true;
@@ -52,11 +53,35 @@ const tic_tac_toe = {
             if (this.board[ this.winning_sequences[i][0] ] == simbol  &&
                 this.board[ this.winning_sequences[i][1] ] == simbol &&
                 this.board[ this.winning_sequences[i][2] ] == simbol) {
-                console.log('winning sequences INDEX:' + i);
+                this.on_win();
+                this.point_to_player(this.symbols.turn_index);
                 return i;
             }
         };
         return -1;
+    },
+
+    point_to_player: function(player)
+    {
+        var player_id = this.symbols.options[player];
+        var player_dom = document.getElementById(player_id);
+        var current_player_point = parseFloat(player_dom.getElementsByTagName('span')[1].innerHTML) + 1;
+        var player_point = player_dom.getElementsByTagName('span')[1];
+
+        player_point.innerHTML = current_player_point;
+    },
+
+    on_make_play: function()
+    {
+        var win_sound = new Audio('mp3/on_make_play.mp3');
+        win_sound.play();
+    },
+
+    on_win: function(){
+
+        var win_sound = new Audio('mp3/on_win.mp3');
+        win_sound.play();
+
     },
 
     game_is_over: function() {
@@ -77,6 +102,6 @@ const tic_tac_toe = {
             content += '<div onclick="tic_tac_toe.make_play(' + i + ')">' + this.board[i] + '</div>';
         };
 
-        this.container_element.innerHTML = content;
+        this.container_element.innerHTML = (content);
     },
 };
