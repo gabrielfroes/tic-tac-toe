@@ -4,6 +4,7 @@ const oo = document.querySelector('#o_campo');
 const game_narration = document.querySelector('.game-narration');
 
 const play = document.getElementById("play");
+const replay = document.getElementById("replay");
 
 var x_campo = document.querySelector('#x_campo'); 
 var o_campo = document.querySelector('#o_campo');
@@ -20,9 +21,10 @@ const tic_tac_toe = {
     },
     container_element: null,
     gameover: false,
+    botwin: null,
     vez: false,
     game_narration: null,
-    started_game: false,
+    valor: "〇",
     sequences: [
       [0,1,2],
       [3,4,5],
@@ -42,19 +44,15 @@ const tic_tac_toe = {
     
     // FUNCTIONS
     init: function(container, xx, oo, game_narration) {
-      
       this.container_element = container;
       this.players.input_x = xx;
       this.players.input_o = oo;
       this.game_narration = game_narration;
-      this.draw();
-      play.innerText = "PLAY";
       this.gameover = true;
     },
 
     make_play: function(position) {
-      
-      if (this.gameover || !this.started_game) return false;
+      if (this.gameover) return false;
       
       if (this.board[position] === '') {
           this.board[position] = this.simbols.options[this.simbols.turn_index];
@@ -65,6 +63,8 @@ const tic_tac_toe = {
         
         if (winning_sequences_index >= 0) {
           this.game_is_over(winner);
+          this.stylize_winner_sequence(this.sequences[winning_sequences_index]);
+          this.valor = winner;
         } else {
           if (this.vez === true) {
             this.simbols.change();
@@ -91,17 +91,29 @@ const tic_tac_toe = {
       }
       return -1;
     },
+    
+    stylize_winner_sequence: function(winner_sequence) {
+      winner_sequence.forEach((position) => {
+        this.container_element
+          .querySelector(`div:nth-child(${position + 1})`)
+          .classList.add('winner');
+      });
+    },
   
     game_is_over: function(winner) {
       this.gameover = true;
       this.game_narration.textContent = winner === '〇' ? `${this.players.o} win!` : `${this.players.x} win!`;
       //tempo = "a";
       play.innerText = "Jogar novamente?";
+      this.botwin = winner;
+      
     },
     
     bot: function() {
       let gera = Math.round(Math.random() * 9);
       let position = gera;
+      
+      gera = this.sequences;
       var x = this.simbols.options[this.simbols.turn_index];
       
       if (x === "✕") this.repeat(position);
@@ -119,17 +131,27 @@ const tic_tac_toe = {
       x_campo.style.display = "none";
       o_campo.style.display = "none";
       
-      this.players.x = !this.players.input_x.value ? '✕' : this.players.input_x.value;
-      
       this.players.o = !this.players.input_o.value ? '〇' : this.players.input_o.value;
+      
+      this.players.x = !this.players.input_x.value ? '✕' : this.players.input_x.value;
       
       this.board.fill('');
       
-      this.started_game = true;
-      this.game_narration.textContent = `${this.players.o} turn!`;
+      if (this.simbols.turn_index === 1) {
+        this.game_narration.textContent = `${this.players.x} turn! `;
+      } else {
+        this.game_narration.textContent = `${this.players.o} turn! `;
+      }
+      
       this.gameover = false;
       play.innerText = "REPLAY";
       this.draw();
+      
+      if (this.vez === true) {
+        if (this.botwin === "✕" || this.simbols.turn_index === 1) {
+          this.bot();
+        }
+      }
     },
     
     check_draw: function () {
@@ -143,16 +165,20 @@ const tic_tac_toe = {
     },
     
     setNarrationText: function() {
-      this.game_narration.textContent = (this.simbols.turn_index === 0) ? `${this.players.x} turn!`: `${this.players.o} turn!`;
+      // 0 - o | 1 - x
+      //this.game_narration.textContent = (this.simbols.turn_index === 0) ? `${this.players.x} turn!` : `${this.players.o} turn!`;
+      
+      this.game_narration.textContent = (this.simbols.turn_index === 1) ? `${this.players.o} turn!` : `${this.players.x} turn!`;
     },
   
     draw: function() {
       let content = '';
-      if (this.check_draw() === true) {
+        
+        if (this.check_draw() === true) {
         this.gameover = true;
         this.game_narration.textContent = 'old!';
-      }
-    
+        }
+      
       for (var i in this.board ) {
         content += '<div onclick="tic_tac_toe.make_play(' + i + ')">' + this.board[i] + '</div>';
       }
@@ -207,12 +233,9 @@ function startCountdown() {
 }
 */
 
-//tic_tac_toe.init( document.querySelector('.game') );
-
-  //tic_tac_toe.start();
   tic_tac_toe.init(container, xx, oo, game_narration);
   
-  //tic_tac_toe.startCountdown();
+  //startCountdown();
 
 function restart() {
   window.location.reload(true);
