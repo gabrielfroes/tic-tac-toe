@@ -77,6 +77,10 @@ body {
   align-items: center;
 }
 
+.game > div.winner {
+  color: #333;
+}
+
 footer {
   margin: 1em;
 }
