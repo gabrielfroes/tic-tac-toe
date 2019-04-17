@@ -8,12 +8,19 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    
     <div class='game'></div>
-
+    <div class='score'>
+        <p class="PlayerO"></p>
+        <p class="PlayerX"></p>
+    </div>
+    
+    <div class="winner"></div>
+    <div class="center">
+        <a onclick="tic_tac_toe.start()" class="buttonRestart">Restart Game</a>
+    </div>
     <script src="js/tic-tac-toe.js"></script>
     <script>
-        tic_tac_toe.init( document.querySelector('.game') );
+        tic_tac_toe.init(document.querySelector('.game'),  document.querySelector('.PlayerO'), document.querySelector('.PlayerX'), document.querySelector('.winner'));
         tic_tac_toe.start();
     </script>
     
