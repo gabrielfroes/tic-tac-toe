@@ -1,11 +1,11 @@
 .game {
-    width: 600px;
+  width: 600px;
 	height: 600px;
 	margin: 0 auto;
-    background-color: #34495e;
-    color: #fff;
-    border: 6px solid #2c3e50;
-    border-radius: 10px;
+  background-color: #34495e;
+  color: #fff;
+  border: 6px solid #2c3e50;
+  border-radius: 10px;
 	display: grid;
 	grid-template: repeat(3, 1fr) / repeat(3, 1fr);
 }
@@ -19,4 +19,65 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.score {
+  width: 600px;
+  margin: 0 auto;
+  font-size: 18px;
+}
+
+.score .PlayerO {
+  float: left;
+}
+
+.score .PlayerX {
+  float: right;
+}
+
+.center{
+  display: flex;
+  justify-content: center;
+}
+
+.winner {
+  font-size: 24px;
+  margin-top: 5%;
+  text-align: center;
+  color: green;
+}
+
+.buttonRestart {
+  width: 100px;
+  background: #3498db;
+  border-bottom: #2980b9 3px solid;
+  border-left: #2980b9 1px solid;
+  border-right: #2980b9 1px solid;
+  border-radius: 6px;
+  text-align: center;
+  color: white;
+  padding: 10px;
+  float: left;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.buttonRestart:hover {
+  opacity: 0.9;
+  cursor: pointer;
+}
+
+.buttonRestart:active {
+  margin-right: 10px;
+  width: 100px;
+  background: #2980b9;
+  border-bottom: #2980b9 1px solid;
+  border-left: #2980b9 1px solid;
+  border-right: #2980b9 1px solid;
+  border-radius: 6px;
+  text-align: center;
+  color: white;
+  padding: 10px;
+  margin-top: 3px;
+  float: left;
 }
