@@ -3,13 +3,7 @@ const tic_tac_toe = {
 
     // ATTRIBUTES
     board: ['','','','','','','','',''],
-    symbols: {
-                options: ['O','X'],
-                turn_index: 0,
-                change: function(){
-                    this.turn_index = ( this.turn_index === 0 ? 1:0 );
-                }
-            },
+    symbols: false,
     container_element: null,
     gameover: false,
     winning_sequences: [
@@ -30,20 +24,18 @@ const tic_tac_toe = {
 
     make_play: function(position) {
         if (this.gameover) return false;
-        if (this.board[position] === ''){
-            this.board[position] = this.symbols.options[this.symbols.turn_index];
-            this.draw();
-            let winning_sequences_index = this.check_winning_sequences( this.symbols.options[this.symbols.turn_index] );
-            if (winning_sequences_index >= 0){
-                this.game_is_over();
-            } else{
-                this.symbols.change();
-            }
-            return true;
+        if (this.board[position] != '') return false;
+
+        this.board[position] = this.symbols ? 'X' : 'O'
+        this.draw()
+
+        let winning_sequences_index = this.check_winning_sequences( this.board[position] );
+        if (winning_sequences_index >= 0){
+            this.game_is_over();
+        } else{
+            this.symbols = !this.symbols
         }
-        else {
-            return false;
-        }
+        return true;
     },
 
     check_winning_sequences: function(simbol) {
@@ -74,7 +66,7 @@ const tic_tac_toe = {
         let content = '';
 
         for ( i in this.board ) {
-            content += '<div onclick="tic_tac_toe.make_play(' + i + ')">' + this.board[i] + '</div>';
+            content += `<div onclick="tic_tac_toe.make_play(${i})">${this.board[i]}</div>`;
         };
 
         this.container_element.innerHTML = content;
