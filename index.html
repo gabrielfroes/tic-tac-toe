@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,15 +8,22 @@
     <title>Tic Tac Toe</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-    
-    <div class='game'></div>
+
+    <div class="start">
+        <button onclick="tic_tac_toe.start()">Click to Start Game</button>
+    </div>
+
+    <div class="game"></div>
 
     <script src="js/tic-tac-toe.js"></script>
     <script>
-        tic_tac_toe.init( document.querySelector('.game') );
-        tic_tac_toe.start();
+        const container = document.querySelector('.game');
+        const start = document.querySelector('.start');
+        tic_tac_toe.init(container, start);
     </script>
-    
+
 </body>
+
 </html>
