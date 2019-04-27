@@ -1,5 +1,6 @@
 /* 
   Design: by github - @t-heu
+  // Responsive
 */
 
 body {
@@ -8,14 +9,22 @@ body {
 }
 
 .game {
-  width: 300px;
-	height: 300px;
+  width: 500px;
+	height: 500px;
+	font-size: 1.8em;
 	margin: 0 auto;
   background-color: #15BDAC;
   color: #fff;
-  border-radius: 1px;
 	display: grid;
 	grid-template: repeat(3, 2fr) / repeat(3, 1fr);
+}
+
+@media only screen and (max-width: 720px) {
+  .game {
+    width: 300px;
+    height: 300px;
+    font-size: 1em;
+  }
 }
 
 .game > div:nth-child(1) {
@@ -81,10 +90,6 @@ body {
   color: #333;
 }
 
-footer {
-  margin: 1em;
-}
-
 .panel, .caixa {
   display: flex;
   justify-content: center;
@@ -131,9 +136,9 @@ button {
   border: 1px solid #eee;
   padding: .5em 1.2em;
   border-radius: 2px;
-  box-shadow: #ddd 1px 1px 0 2px;
+  box-shadow: #ddd 2px 2px 0 3px;
 }
 
 button:hover {
-  box-shadow: #ddd 1px 1px 0 1px;
+  box-shadow: #ddd 1px 1px 0 2px;
 }
