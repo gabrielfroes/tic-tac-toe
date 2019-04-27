@@ -16,7 +16,7 @@ body {
 }
 
 .game>div {
-  border: 6px solid #2c3e50;
+  border: 1px solid #2c3e50;
   font-family: Helvetica;
   font-weight: bold;
   font-size: 4em;
@@ -25,16 +25,26 @@ body {
   align-items: center;
 }
 
+.game>div:hover {
+  cursor: pointer;
+  background-color: #34545e;
+}
+
 .btn {
-  border: 5px solid #2c3e50;
+  border: 1px solid #2c3e50;
   background-color: #34495e;
   color: white;
   margin-top: 10px;
   padding: 10px 20px
 }
 
+.btn:hover {
+  background-color: #000;
+  border: 1px solid #000;
+}
+
 .game > div.winner {
-  background: yellow;
+  background: #86a1bc;
 }
 
 .game > div.winner > span {
