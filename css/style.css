@@ -23,6 +23,13 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+  -webkit-transition: background-color .2s;
+  transition: background-color .2s;
+}
+
+.game>div:hover {
+  background-color: #445F7A;
 }
 
 .btn {
@@ -30,7 +37,13 @@ body {
   background-color: #34495e;
   color: white;
   margin-top: 10px;
-  padding: 10px 20px
+  padding: 10px 20px;
+  -webkit-transition: background-color .2s;
+  transition: background-color .2s;
+}
+
+.btn:hover {
+  background-color: #445F7A;
 }
 
 .game > div.winner {
