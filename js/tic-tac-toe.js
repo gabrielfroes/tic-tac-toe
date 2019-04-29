@@ -1,8 +1,11 @@
-const container = document.querySelector('.game'), xx = document.querySelector('#x_campo'), oo = document.querySelector('#o_campo'), game_narration = document.querySelector('.game-narration');
-
-const play = document.getElementById("play"), replay = document.getElementById("replay");
-
-var x_campo = document.querySelector('#x_campo'), o_campo = document.querySelector('#o_campo');
+/*jshint esversion: 6 */
+const container = document.querySelector('.game');
+const xx = document.querySelector('#x_campo');
+const oo = document.querySelector('#o_campo');
+const game_narration = document.querySelector('.game-narration');
+const play = document.getElementById("play");
+var x_campo = document.querySelector('#x_campo');
+const o_campo = document.querySelector('#o_campo');
 
 const tic_tac_toe = {
     // ATTRIBUTES
@@ -42,6 +45,7 @@ const tic_tac_toe = {
     
     // FUNCTIONS
     init: function(container, xx, oo, game_narration) {
+      
       this.container_element = container;
       this.players.input_x = xx;
       this.players.input_o = oo;
@@ -64,12 +68,12 @@ const tic_tac_toe = {
           this.stylize_winner_sequence(this.sequences[winning_sequences_index]);
           this.victory_value = winner;
         } else if (this.check_draw()) {
-          //console.log("empate");
+          this.gameover = true;
+          this.game_narration.textContent = 'old!';
         } else {
           if (this.turn === true) {
             this.symbols.change();
             if (this.bot.index == 1 && this.symbols.turn_index == 1) {
-              
               this.machine(this.symbols.options[this.symbols.turn_index]);
             }
           } else {
@@ -83,29 +87,20 @@ const tic_tac_toe = {
     },
     
     check_draw: function() {
-      //let draw = false;
-      /*if (draw === true) {
-        this.gameover = true;
-        this.game_narration.textContent = 'old!';
-      }*/
-      
       for (let i in this.board) {
         if (this.board[i] === '')
           return false;
       }
-      this.gameover = true;
-      this.game_narration.textContent = 'old!';
       return true;
     },
     
     check_winning_sequences: function(symbol) {
     
-      for (var i in this.sequences ) {
+      for (let i in this.sequences ) {
         if (this.board[ this.sequences[i][0] ] == symbol && this.board[ this.sequences[i][1] ] == symbol && this.board[ this.sequences[i][2] ] == symbol) {
           
           return { winning_sequences_index: i, winner: symbol };
         }
-        
       }
       return -1;
     },
@@ -120,7 +115,7 @@ const tic_tac_toe = {
   
     game_is_over: function(winner) {
       this.gameover = true;
-      this.game_narration.textContent = winner === '〇' ? `${this.players.o} win!` : `${this.players.x} win!`;
+      this.game_narration.textContent = winner === '〇' ? this.players.o + ' win!' : this.players.x + ' win!';
       play.innerText = "Jogar novamente?";
       this.botwin = winner;
     },
@@ -141,12 +136,13 @@ const tic_tac_toe = {
     },
     
     machine_strategic_move: function (symbol) {
+      
       let score;
-      for (let i in this.sequences) {
+      for (let i = 0; i < this.sequences.length; i++) {
         score = 0;
-        if (this.board[this.sequences[i][0]] == symbol)
+        if (this.board[this.sequences[i][0]] === symbol)
           score++;
-        if (this.board[this.sequences[i][1]] == symbol)
+        if (this.board[this.sequences[i][1]] === symbol)
           score++;
         if (this.board[this.sequences[i][2]] === symbol)
           score++;
@@ -185,9 +181,9 @@ const tic_tac_toe = {
       this.board.fill('');
       
       if (this.symbols.turn_index === 1) {
-        this.game_narration.textContent = `${this.players.x} turn! `;
+        this.game_narration.textContent = this.players.x + ' turn!';
       } else {
-        this.game_narration.textContent = `${this.players.o} turn! `;
+        this.game_narration.textContent = this.players.o + ' turn!';
       }
       
       this.gameover = false;
@@ -202,13 +198,13 @@ const tic_tac_toe = {
     },
     
     setNarrationText: function() {
-      this.game_narration.textContent = (this.symbols.turn_index === 1) ? `${this.players.o} turn!` : `${this.players.x} turn!`;
+      this.game_narration.textContent = (this.symbols.turn_index === 1) ? this.players.o + ' turn!' : this.players.x + ' turn!';
     },
   
     draw: function() {
       let content = '';
       
-      for (let i in this.board) {
+      for (let i=0; i < this.board.length; i++) {
         content += '<div onclick="tic_tac_toe.make_play(' + i + ')">' + this.board[i] + '</div>';
       }
       
