@@ -142,3 +142,59 @@ button {
 button:hover {
   box-shadow: #ddd 1px 1px 0 2px;
 }
+
+a {
+  color: #f5f5fa;
+}
+
+.onoff {
+  display: inline-block;
+  transform: translateY(16px);
+}
+
+.onoff input.toggle {
+  display: none;
+}
+
+.onoff input.toggle + label {
+  display: inline-block;
+  position: relative;
+  box-shadow: inset 1px 1px 0 2px #ddd;
+  height: 40px;
+  width: 90px;
+  background: #f5f5fa;
+  border-radius: 30px;
+}
+
+.onoff input.toggle + label:before {
+  content: "";
+  display: block;
+  height: 40px;
+  width: 40px;
+  border-radius: 30px;
+  background: rgba(19, 191, 17, 0);
+  transition: 0.1s ease-in-out;
+}
+
+.onoff input.toggle + label:after {
+  content: "";
+  position: absolute;
+  height: 40px;
+  width: 40px;
+  top: 0;
+  left: 0;
+  border-radius: 30px;
+  background: #f5f5fa;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: 0.1s ease-in-out;
+}
+
+.onoff input.toggle:checked + label:before {
+  width: 90px;
+  background: #333;
+}
+
+.onoff input.toggle:checked + label:after {
+  left: 50px;
+  box-shadow: 0 0 0 1px #333, 0 2px 4px rgba(0, 0, 0, 0.2);
+}
