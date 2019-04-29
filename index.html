@@ -1,44 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>TIC TAC TOE</title>
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>TIC TAC TOE</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <article class="panel">
-     <p class="game-narration">Wating for game start...</p>
+    <p class="game-narration">Wating for game start...</p>
     <form class="caixa">
       <input id="x_campo" type="text" placeholder="name ✕" name="xx" required>
       <input style="margin-bottom: 1em;" id="o_campo" type="text" placeholder="name 〇" name="oo" required> 
       
       <div>
         <button type="button" id="play" onclick=" tic_tac_toe.start()">PLAY</button>
-        <button type="button" onclick="pc()">pc</button>
-        <button type="button" onclick="friend()">game friend</button>
+        
+      <!-- <a>FRIEND</a> -->
+        <div class="onoff">
+          <input type="checkbox" class="toggle" id="onoff1">
+          <label for="onoff1"></label>
+        </div>
+      <!-- <a>MACHINE</a> -->
       </div>
     </form> 
   </article>
-  
-  <!--
-  <section class="a">
-    <h1 id="sessao">00:00</h1>
-  </section>
-  -->
   
   <div class='game'></div>
   
   <script src="js/tic-tac-toe.js"></script>
   <script>
-  function pc() {
-    tic_tac_toe.vez = true;
-  }
-  
-  function friend() {
-    tic_tac_toe.vez = false;
-  }
+    var onoff = document.getElementById('onoff1');
+    
+    onoff.addEventListener('change', function() {
+      estado = this.checked ? machine() : friend();
+    });
+    
+    function machine() {
+      tic_tac_toe.turn = true;
+    }
+    
+    function friend() {
+      tic_tac_toe.turn = false;
+    }
   </script>
 </body>
 </html>
