@@ -4,8 +4,14 @@
 */
 
 body {
-  background: #14BDAC;
+  background: #fff; /*14BDAC*/
   margin: 0;
+}
+
+.ba {
+  position: relative;
+  background: #14BDAC;
+  padding: 1.2em 1em;
 }
 
 .game {
@@ -21,9 +27,9 @@ body {
 
 @media only screen and (max-width: 720px) {
   .game {
-    width: 300px;
-    height: 300px;
-    font-size: 1em;
+    width: 220px;
+    height: 220px;
+    font-size: .7em;
   }
 }
 
@@ -79,72 +85,96 @@ body {
   border: none;
   font-family: Helvetica;
   font-weight: bold;
-  color: #F1EAD5;
   font-size: 4em;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.game > div.winner {
-  color: #333;
+.game > div.xx, .xx {
+  color: #545454; /*333*/
 }
 
-.panel, .caixa {
+.game > div.oo, .oo {
+  color: #F2EBD3;
+}
+
+.panel {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin: 1em 0;
+  margin: 1em 0 0 0;
 }
 
 .panel input {
-  background: #f5f5fa;
+  flex-direction: row;
+  margin: 0 0 0 .8em;
   padding: .6em 1em .5em;
-  box-shadow: #ddd inset 1px 1px 0 2px;
+  outline: 0;
+  color: #fff;
+  width: 100px;
+  border: none;
+  border-radius: 6px;
+  box-shadow: #14BDAC inset 0 -2px 0 0, #ccc 0 0 5px 2px;
   font-size: 1.1em;
-  border: #f5f5fa solid 2px;
   font-family: monospace;
+}
+
+.panel input:hover {
+  box-shadow: #333 inset 0 -2px 0 0, #ccc 0 0 5px 2px;
 }
 
 .game-narration {
-  margin: 0;
-  background: #f5f5fa;
+  margin: 0 0 1em 0;
+  font-weight: bold;
+  color: #444;
   padding: .6em 1em .5em;
-  box-shadow: #ddd inset 1px 1px 0 2px;
   font-size: 1.1em;
-  border: #f5f5fa solid 2px;
   font-family: monospace;
 }
 
-#sessao {
-  background: #f5f5fa;
-  padding: .6em 1em .5em;
-  box-shadow: #ddd inset 1px 1px 0 2px;
-  font-size: 1.1em;
-  border: #f5f5fa solid 2px;
-  font-family: monospace;
+.banner {
+  z-index: 20;
+  width: 100%;
+  height: 200px;
+  background: #15BDAC;
+  transition: 10s;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.banner h1 {
+  margin: 0;
+  font-size: 4em;
+}
+
+.banner h2 {
+  margin: 0;
+  color: #545454;
 }
 
 button {
   display: inline-block;
   outline: 0;
+  cursor: pointer;
   margin-right: 1em;
   color: #0da192;
   font-weight: 500;
-  background: #f5f5fa;
-  border: 1px solid #eee;
-  padding: .5em 1.2em;
-  border-radius: 2px;
-  box-shadow: #ddd 2px 2px 0 3px;
+  background: none;
+  border: none;
 }
 
-button:hover {
-  box-shadow: #ddd 1px 1px 0 2px;
-}
-
-a {
-  color: #f5f5fa;
+select {
+  margin-bottom: 1em;
+  padding: .4em;
+  outline: 0;
+  border: none;
+  font-weight: bold;
+  background: #fff;
 }
 
 .onoff {
