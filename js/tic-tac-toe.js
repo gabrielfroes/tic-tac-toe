@@ -11,6 +11,9 @@ const banner = document.querySelector(".banner");
 const winning_symbol = document.getElementById("s");
 const winning_text = document.getElementById("w");
 
+const score_x = document.getElementById("score_x");
+const score_o = document.getElementById("score_o");
+
 const tic_tac_toe = {
     // ATTRIBUTES
     board: ['','','','','','','','',''],
@@ -36,6 +39,10 @@ const tic_tac_toe = {
       [0,4,8],
       [2,4,6]
     ],
+    score: {
+      score_x: 0,
+      score_o: 0
+    },
     players: {
       x: '✕',
       o: '〇',
@@ -100,7 +107,7 @@ const tic_tac_toe = {
     
     check_draw: function() {
       for (let i in this.board) {
-        if (this.board[i] === '')
+        if (this.board[i] == '')
           return false;
       }
       return true;
@@ -121,9 +128,13 @@ const tic_tac_toe = {
       if (i == "0") {
         winning_symbol.innerHTML = "<span class='oo'>〇</span>";
         winning_text.innerText = "WIN!";
+        this.score.score_o += 1;
+        score_o.innerHTML = '〇 - ' + this.score.score_o;
       } else {
         winning_symbol.innerHTML = "<span class='xx'>✕</span>";
         winning_text.innerText = "WIN!";
+        this.score.score_x += 1;
+        score_x.innerHTML = '✕ - ' + this.score.score_x;
       }
       container.style.display = "none";
       banner.style.display = "flex";
@@ -150,21 +161,21 @@ const tic_tac_toe = {
       let score;
       for (let i = 0; i < this.sequences.length; i++) {
         score = 0;
-        if (this.board[this.sequences[i][0]] === symbol)
+        if (this.board[this.sequences[i][0]] == symbol)
           score++;
-        if (this.board[this.sequences[i][1]] === symbol)
+        if (this.board[this.sequences[i][1]] == symbol)
           score++;
-        if (this.board[this.sequences[i][2]] === symbol)
+        if (this.board[this.sequences[i][2]] == symbol)
           score++;
           
         if (score == 2) {
-          if (this.board[this.sequences[i][0]] === '') {
+          if (this.board[this.sequences[i][0]] == '') {
             return this.sequences[i][0];
           }
-          if (this.board[this.sequences[i][1]] === '') {
+          if (this.board[this.sequences[i][1]] == '') {
             return this.sequences[i][1];
           }
-          if (this.board[this.sequences[i][2]] === '') {
+          if (this.board[this.sequences[i][2]] == '') {
             return this.sequences[i][2];
           }
         }
@@ -216,7 +227,7 @@ const tic_tac_toe = {
     draw: function() {
       let content = '';
       
-      for (let i=0; i < this.board.length; i++) {
+      for (let i = 0; i < this.board.length; i++) {
         content += '<div onclick="tic_tac_toe.make_play(' + i + ')">' + this.board[i] + '</div>';
       }
       this.container_element.innerHTML = content;
