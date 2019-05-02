@@ -9,33 +9,39 @@
 </head>
 <body>
   <article class="panel">
-    <p class="game-narration">Wating for game start...</p>
+    <p class="game-narration">wating for game start...</p>
+    
     <form class="caixa">
-      <input id="x_campo" type="text" placeholder="name ✕" name="xx" required>
-      <input style="margin-bottom: 1em;" id="o_campo" type="text" placeholder="name 〇" name="oo" required> 
+      <input id="x_campo" type="text" placeholder="name ✕" name="xx" required><input style="margin-bottom: 1em;" id="o_campo" type="text" placeholder="name 〇" name="oo" required> 
+    </form> 
       
       <div>
         <button type="button" id="play" onclick=" tic_tac_toe.start()">PLAY</button>
         
-      <!-- <a>FRIEND</a> -->
-        <div class="onoff">
-          <input type="checkbox" class="toggle" id="onoff1">
-          <label for="onoff1"></label>
-        </div>
-      <!-- <a>MACHINE</a> -->
+        <select id="change" onchange="update()">
+          <option value="1">joga contra máquina</option>
+          <option value="2" selected>joga contra um amigo</option>
+        </select>
       </div>
-    </form> 
   </article>
   
-  <div class='game'></div>
+  <section class="ba">
+    <article class="banner">
+      <h1 id="s"></h1>
+      <h2 id="w"></h2>
+    </article>
+    <div class='game'></div>
+  </section>
   
   <script src="js/tic-tac-toe.js"></script>
   <script>
-    var onoff = document.getElementById('onoff1');
-    
-    onoff.addEventListener('change', function() {
-      estado = this.checked ? machine() : friend();
-    });
+    function update() {
+      if (document.getElementById('change').value == 1) {
+        machine();
+      } else {
+        friend();
+      }
+    }
     
     function machine() {
       tic_tac_toe.turn = true;
