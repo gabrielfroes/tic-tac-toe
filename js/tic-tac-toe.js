@@ -7,11 +7,16 @@ const play = document.getElementById("play");
 var x_campo = document.querySelector('#x_campo');
 const o_campo = document.querySelector('#o_campo');
 
+const banner = document.querySelector(".banner");
+const winning_symbol = document.getElementById("s");
+const winning_text = document.getElementById("w");
+
 const tic_tac_toe = {
     // ATTRIBUTES
     board: ['','','','','','','','',''],
     symbols: {
-      options: ['〇','✕'],
+      //option: ['〇','✕'],
+      options: ['<span class="oo">〇</span>','<span class="xx">✕</span>'],
       turn_index: 0,
       change: function() {
         this.turn_index = ( this.turn_index === 0 ? 1:0 );
@@ -19,10 +24,8 @@ const tic_tac_toe = {
     },
     container_element: null,
     gameover: false,
-    botwin: null,
     turn: false,
     game_narration: null,
-    victory_value: "〇",
     sequences: [
       [0,1,2],
       [3,4,5],
@@ -45,7 +48,6 @@ const tic_tac_toe = {
     
     // FUNCTIONS
     init: function(container, xx, oo, game_narration) {
-      
       this.container_element = container;
       this.players.input_x = xx;
       this.players.input_o = oo;
@@ -57,32 +59,42 @@ const tic_tac_toe = {
       if (this.gameover) return false;
       
       if (this.board[position] === '') {
-          this.board[position] = this.symbols.options[this.symbols.turn_index];
-          this.setNarrationText();
-          this.draw();
-          
-          let { winning_sequences_index, winner } = this.check_winning_sequences(this.symbols.options[this.symbols.turn_index]);
+        this.board[position] = this.symbols.options[this.symbols.turn_index];
+        this.setNarrationText();
+        this.draw();
+        
+        let {
+          winning_sequences_index, winner
+        } = this.check_winning_sequences(this.symbols.options[this.symbols.turn_index]);
         
         if (winning_sequences_index >= 0) {
-          this.game_is_over(winner);
-          this.stylize_winner_sequence(this.sequences[winning_sequences_index]);
-          this.victory_value = winner;
+          this.game_is_over(this.symbols.turn_index);
+          this.stylize_winner_sequence(this.symbols.turn_index);
+          
         } else if (this.check_draw()) {
           this.gameover = true;
           this.game_narration.textContent = 'old!';
+          winning_symbol.innerHTML = "<span class='xx'>✕</span><span class='oo'>〇</span>";
+          winning_text.innerText = "OLD!";
+          container.style.display = "none";
+          banner.style.display = "flex";
         } else {
-          if (this.turn === true) {
-            this.symbols.change();
-            if (this.bot.index == 1 && this.symbols.turn_index == 1) {
-              this.machine(this.symbols.options[this.symbols.turn_index]);
-            }
-          } else {
-            this.symbols.change();
-          }
+          this.who_plays_machine_or_player();
         }
         return true;
       } else {
         return false;
+      }
+    },
+    
+    who_plays_machine_or_player: function() {
+      if (this.turn === true) {
+        this.symbols.change();
+        if (this.bot.index == 1 && this.symbols.turn_index == 1) {
+          this.machine(this.symbols.options[this.symbols.turn_index]);
+        }
+      } else {
+        this.symbols.change();
       }
     },
     
@@ -95,48 +107,46 @@ const tic_tac_toe = {
     },
     
     check_winning_sequences: function(symbol) {
-    
       for (let i in this.sequences ) {
+        
         if (this.board[ this.sequences[i][0] ] == symbol && this.board[ this.sequences[i][1] ] == symbol && this.board[ this.sequences[i][2] ] == symbol) {
-          
           return { winning_sequences_index: i, winner: symbol };
         }
       }
       return -1;
     },
     
-    stylize_winner_sequence: function(winner_sequence) {
-      winner_sequence.forEach((position) => {
-        this.container_element
-          .querySelector(`div:nth-child(${position + 1})`)
-          .classList.add('winner');
-      });
+    stylize_winner_sequence: function(i) {
+      
+      if (i == "0") {
+        winning_symbol.innerHTML = "<span class='oo'>〇</span>";
+        winning_text.innerText = "WIN!";
+      } else {
+        winning_symbol.innerHTML = "<span class='xx'>✕</span>";
+        winning_text.innerText = "WIN!";
+      }
+      container.style.display = "none";
+      banner.style.display = "flex";
     },
   
-    game_is_over: function(winner) {
+    game_is_over: function(i) {
       this.gameover = true;
-      this.game_narration.textContent = winner === '〇' ? this.players.o + ' win!' : this.players.x + ' win!';
+      this.game_narration.textContent = i == "0" ? this.players.o + ' win!' : this.players.x + ' win!';
       play.innerText = "Jogar novamente?";
-      this.botwin = winner;
     },
     
     machine: function() {
       //Jogar para ganhar | Jogar para defesa
       if (this.machine_strategic_move(this.symbols.options[this.symbols.turn_index]) > -1) {
         this.make_play(this.machine_strategic_move(this.symbols.options[this.symbols.turn_index]));
-        
       } else if (this.machine_strategic_move(this.symbols.options[this.turn_index === 0 ? 1 : 0]) > -1) {
-        
         this.make_play(this.machine_strategic_move(this.symbols.options[this.turn_index === 0 ? 1 : 0]));
-        
       } else {
         this.make_play(this.machine_random_move());
-        
       }
     },
     
     machine_strategic_move: function (symbol) {
-      
       let score;
       for (let i = 0; i < this.sequences.length; i++) {
         score = 0;
@@ -171,8 +181,10 @@ const tic_tac_toe = {
     },
   
     start: function() {
+      container.style.display = "grid";
       x_campo.style.display = "none";
       o_campo.style.display = "none";
+      banner.style.display = "none";
       
       this.players.o = !this.players.input_o.value ? '〇' : this.players.input_o.value;
       
@@ -191,7 +203,7 @@ const tic_tac_toe = {
       this.draw();
       
       if (this.turn === true) {
-        if (this.botwin === "✕" && this.symbols.turn_index === 1) {
+        if (this.symbols.turn_index === 1) {
           this.machine();
         }
       }
@@ -207,9 +219,7 @@ const tic_tac_toe = {
       for (let i=0; i < this.board.length; i++) {
         content += '<div onclick="tic_tac_toe.make_play(' + i + ')">' + this.board[i] + '</div>';
       }
-      
       this.container_element.innerHTML = content;
     },
   };
-
 tic_tac_toe.init(container, xx, oo, game_narration);
