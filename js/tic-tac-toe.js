@@ -4,7 +4,7 @@ const tic_tac_toe = {
     // ATTRIBUTES
     board: ['','','','','','','','',''],
     symbols: {
-                options: ['O','X'],
+                options: ['o','x'],
                 turn_index: 0,
                 change(){
                     this.turn_index = ( this.turn_index === 0 ? 1:0 );
@@ -50,11 +50,14 @@ const tic_tac_toe = {
     },
 
     stylize_winner_sequence(winner_sequence) {
+    	const winning_class = 'winner winner--' + winner_sequence.join('-');
+
+
         winner_sequence.forEach((position) => {
           this
             .container_element
             .querySelector(`div:nth-child(${position + 1})`)
-            .classList.add('winner');
+            .classList = winning_class;
         });
       },
 
@@ -97,6 +100,6 @@ const tic_tac_toe = {
     },
 
     draw() {
-        this.container_element.innerHTML = this.board.map((element, index) => `<div onclick="tic_tac_toe.make_play('${index}')"> ${element} </div>`).reduce((content, current) => content + current);
+        this.container_element.innerHTML = this.board.map((element, index) => `<div onclick="tic_tac_toe.make_play('${index}')"> <span class="game-symbol game-symbol--${element}"></span> </div>`).reduce((content, current) => content + current);
     },
 };
