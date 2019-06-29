@@ -10,11 +10,11 @@ To run the code double click on the index.html file or if you are more hardcore 
 You are determined to contribute, so read the [contributing](https://github.com/gabrielfroes/tic-tac-toe/blob/master/Contribution.md)
 
 
-#LICENSE
-[GPLv3](https://github.com/gabrielfroes/tic-tac-toe/blob/master/LICENSE)
-
 # Sponsors
 [Gabriel](https://github.com/gabrielfroes) & [Vanessa]()
 
 # Credits
 [#CDFTV channel](https://www.youtube.com/codigofontetv)
+
+# LICENSE
+[GPLv3](https://github.com/gabrielfroes/tic-tac-toe/blob/master/LICENSE)
