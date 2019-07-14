@@ -5,6 +5,20 @@ body {
   align-items: center;
 }
 
+.scoreboard { /*SCOREBOARD*/
+  width: 65vw;
+  max-width: 400px;
+  background-color: #34495e;
+  border: 12px solid #2c3e50;
+  border-radius: 10px;
+  padding: 5px 20px;
+  margin-bottom: 12px;
+  color: #fff;
+  font-family: Helvetica;
+  font-size: 1.5em;
+  text-align: center;
+}
+
 .game {
   width: 100vw;
   height: 100vw;
