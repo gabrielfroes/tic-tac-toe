@@ -1,9 +1,10 @@
 # Tic Tac Toe
 
 Created by [#CDFTV channel](https://www.youtube.com/codigofontetv).  
-This game was built to make an integration between our Youtube Channel and the subscribers.
 
-Feel free to contribute with improvements and features. Your PRs will be evaluated. 
+Este jogo foi construído para fazer uma integração entre o nosso canal do Youtube e os inscritos.
 
-Cheers!  
-Gabriel & Vanessa
+Sinta-se à vontade para contribuir com melhorias e recursos. Seus PRs serão avaliados.
+
+Felicidades!
+Gabriel e Vanessa

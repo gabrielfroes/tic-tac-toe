@@ -64,7 +64,7 @@ const tic_tac_toe = {
             if (this.board[ this.winning_sequences[i][0] ] == symbol  &&
                 this.board[ this.winning_sequences[i][1] ] == symbol &&
                 this.board[ this.winning_sequences[i][2] ] == symbol) {
-                console.log('winning sequences INDEX:' + i);
+                console.log('Sequencia vendedora: ' + i);
                 return i;
             }
         };
@@ -89,10 +89,10 @@ const tic_tac_toe = {
     restart() {
         if (this.is_game_over() || this.gameover) {
             this.start();
-            console.log('this game has been restarted!')
-        } else if (confirm('Are you sure you want to restart this game?')) {
+            console.log('O jogo foi reiniciado!')
+        } else if (confirm('Você quer mesmo reiniciar este jogo?')) {
             this.start();
-            console.log('this game has been restarted!')
+            console.log('O jogo foi reiniciado!')
         }
     },
 
