@@ -18,14 +18,9 @@ const tic_tac_toe = {
     start_element: null,
     gameover: false,
     winning_sequences: [
-        [0,1,2],
-        [3,4,5],
-        [6,7,8],
-        [0,3,6],
-        [1,4,7],
-        [2,5,8],
-        [0,4,8],
-        [2,4,6]
+        [0,1,2], [3,4,5], [6,7,8],
+        [0,3,6], [1,4,7], [2,5,8],
+        [0,4,8], [2,4,6]
     ],
 
     // FUNCTIONS
@@ -37,10 +32,13 @@ const tic_tac_toe = {
 
     make_play: function(position) {
         if (this.gameover) return false;
+        
         if (this.board[position] === ''){
             this.board[position] = this.symbols.options[this.symbols.turn_index];
             this.draw();
+            
             let winning_sequences_index = this.check_winning_sequences( this.symbols.options[this.symbols.turn_index] );
+            
             if (winning_sequences_index >= 0){
                 this.game_is_over();
             } else{
@@ -62,7 +60,7 @@ const tic_tac_toe = {
                 console.log('winning sequences INDEX:' + i);
                 return i;
             }
-        };
+        }
         return -1;
     },
 
@@ -83,7 +81,7 @@ const tic_tac_toe = {
 
         for ( i in this.board ) {
             content += '<div id="div' + i + '" onclick="tic_tac_toe.make_play(' + i + ')">' + this.board[i] + '</div>';
-        };
+        }
 
         this.container_element.innerHTML = content;
         this.start_element.style.display = "none";
