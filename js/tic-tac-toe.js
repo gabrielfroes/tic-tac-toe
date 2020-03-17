@@ -1,12 +1,12 @@
-// TIC TAC TOE
 const tic_tac_toe = {
+
 
     // ATTRIBUTES
     board: ['','','','','','','','',''],
-    symbols: {
+    simbols: {
                 options: ['O','X'],
                 turn_index: 0,
-                change(){
+                change: function(){
                     this.turn_index = ( this.turn_index === 0 ? 1:0 );
                 }
             },
@@ -24,46 +24,34 @@ const tic_tac_toe = {
                     ],
 
     // FUNCTIONS
-    init(container) {
+    init: function(container) {
         this.container_element = container;
     },
 
-    make_play(position) {
-        if (this.gameover || this.board[position] !== '') return false;
-
-        const currentSymbol = this.symbols.options[this.symbols.turn_index];
-        this.board[position] = currentSymbol;
-        this.draw();
-
-        const winning_sequences_index = this.check_winning_sequences(currentSymbol);
-        if (this.is_game_over()){
-            this.game_is_over();
+    make_play: function(position) {
+        if (this.gameover) return false;
+        if (this.board[position] === ''){
+            this.board[position] = this.simbols.options[this.simbols.turn_index];
+            this.draw();
+            let winning_sequences_index = this.check_winning_sequences( this.simbols.options[this.simbols.turn_index] );
+            if (winning_sequences_index >= 0){
+                this.game_is_over();
+            } else{
+                this.simbols.change();
+            }
+            return true;
         }
-        if (winning_sequences_index >= 0) {
-            this.game_is_over();
-            this.stylize_winner_sequence(this.winning_sequences[winning_sequences_index]);
-        } else {
-            this.symbols.change();
+        else {
+            return false;
         }
-
-        return true;
     },
 
-    stylize_winner_sequence(winner_sequence) {
-        winner_sequence.forEach((position) => {
-          this
-            .container_element
-            .querySelector(`div:nth-child(${position + 1})`)
-            .classList.add('winner');
-        });
-      },
-
-    check_winning_sequences(symbol) {
+    check_winning_sequences: function(simbol) {
 
         for ( i in this.winning_sequences ) {
-            if (this.board[ this.winning_sequences[i][0] ] == symbol  &&
-                this.board[ this.winning_sequences[i][1] ] == symbol &&
-                this.board[ this.winning_sequences[i][2] ] == symbol) {
+            if (this.board[ this.winning_sequences[i][0] ] == simbol  &&
+                this.board[ this.winning_sequences[i][1] ] == simbol &&
+                this.board[ this.winning_sequences[i][2] ] == simbol) {
                 console.log('winning sequences INDEX:' + i);
                 return i;
             }
@@ -71,32 +59,51 @@ const tic_tac_toe = {
         return -1;
     },
 
-    game_is_over() {
+    game_is_over: function() {
         this.gameover = true;
-        console.log('GAME OVER');
+        const audio = document.querySelector('audio');
+
+        audio.src = 'audio/bora.mp3';
+        audio.play();
+        var modal = document.getElementById("myModal");
+        modal.style.display = "block";
+
+        var span = document.getElementsByClassName("close")[0];
+
+        span.onclick = function() {
+          modal.style.display = "none";
+          window.location.reload()
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+          if (event.target == modal) {
+            modal.style.display = "none";
+            window.location.reload();
+          }
+        }
+
+
     },
 
-    is_game_over() {
-        return !this.board.includes('');
-    },
-
-    start() {
+    start: function() {
         this.board.fill('');
         this.draw();
         this.gameover = false;       
     },
 
-    restart() {
-        if (this.is_game_over() || this.gameover) {
-            this.start();
-            console.log('this game has been restarted!')
-        } else if (confirm('Are you sure you want to restart this game?')) {
-            this.start();
-            console.log('this game has been restarted!')
-        }
-    },
+    draw: function() {
+        let content = '';
 
-    draw() {
-        this.container_element.innerHTML = this.board.map((element, index) => `<div onclick="tic_tac_toe.make_play('${index}')"> ${element} </div>`).reduce((content, current) => content + current);
+        for ( i in this.board ) {
+            content += '<div onclick="tic_tac_toe.make_play(' + i + ')">' + this.board[i] + '</div>';
+            const audio = document.querySelector('audio');
+            audio_tocado = Math.floor(Math.random() * 4 + 1);
+            audio.src = 'audio/'+audio_tocado+'.mp3';
+            audio.play();
+            
+        };
+
+        this.container_element.innerHTML = content;
     },
 };
