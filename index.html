@@ -2,21 +2,38 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Tic Tac Toe</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Joguin da véia</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
-    <div class='game'></div>
-    <button class="btn" onclick="tic_tac_toe.restart()" title="Restart this game">Restart</button>
 
-    <script src="js/tic-tac-toe.js"></script>
+    <div class='game'></div>
+    <audio src="audio/1.mp3"></audio>
+    <div id="myModal" class="modal">
+    <div id="myModal2" class="modal2">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p>BORAAAAA! HORA DO SHOW PORRA!</p>
+  </div>
+
+</div>
+</div>
+    <script src="script.js"></script>
     <script>
         tic_tac_toe.init( document.querySelector('.game') );
         tic_tac_toe.start();
     </script>
     
+    <button class="botao" onClick="refresh()">Novo jogo</button>
+    
+    <script>
+        function refresh(){
+            window.location.assign('http://riul.tech/bambam-tik-tak-toe/')
+        }
+    </script>
 </body>
-</html>
+</html> 

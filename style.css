@@ -1,0 +1,145 @@
+body{
+     background-color:rgb(32, 32, 32);
+     text-align: center;
+}
+.botao {
+                width: 20%;
+                height: 36px;
+                padding: 0px 16px;
+                margin: 8px;
+                margin-top: 20px !important;
+                
+                color: rgb(255, 255, 255);
+                background-color: rgb(255, 87, 34);
+                border: none;
+                border-radius: 2px;
+                outline: none;
+                
+                text-transform: uppercase;
+                font-size: 14px;
+                font-weight: bold;
+                letter-spacing: 0.08rem;
+                
+                cursor: pointer;
+
+                -webkit-user-select: none;
+                -ms-user-select: none;
+                -moz-user-select: none;
+                -o-user-select: none;
+                user-select: none;
+
+                -webkit-transition: all 0.2s;
+                -moz-transition: all 0.2s;
+                -ms-transition: all 0.2s;
+                -o-transition: all 0.2s;
+                transition: all 0.2s;
+                
+                -webkit-box-shadow: 0px 0px 14px -2px rgba(0,0,0,1);
+                -moz-box-shadow: 0px 0px 14px -2px rgba(0,0,0,1);
+                box-shadow: 0px 0px 14px -2px rgba(0,0,0,1);
+            }
+                button:active {
+                    -webkit-transform: scale(0.96);
+                    -moz-transform: scale(0.96);
+                    -ms-transform: scale(0.96);
+                    -o-transform: scale(0.96);
+                    transform: scale(0.96);
+                }
+.game {
+    width: 20%;
+    height: 100%;
+    margin: 0 auto; 
+    background-color: rgb(255, 87, 34); /*rgb(32, 32, 32);*/
+    color: #fff; /*rgb(255, 87, 34);*/
+    border: 6px solid rgb(32, 32, 32); /*rgb(255, 87, 34);*/
+    border-radius: 10px;
+    display: grid;
+    grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+    -webkit-box-shadow: 0px 0px 14px -2px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 14px -2px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 14px -2px rgba(0,0,0,0.75);
+}
+
+.game > div {
+  border: 6px solid rgb(32, 32, 32); /*rgb(255, 87, 34);*/
+  font-family: Helvetica;
+  font-weight: bold;
+  height: 4em;
+  font-size:20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} 
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(255,255,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  text-align: center;
+  background-color: green;
+  margin: auto;
+  padding: 20px;
+  font-family: Helvetica;
+  font-weight: bold;
+  color: white;
+  font-size: 25px;
+  border: 1px solid green;
+  width: 50%;
+}
+
+/* The Close Button */
+.close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+@media only screen and (max-width: 600px) {
+ .game {
+    width: 90%;
+    height: 100%;
+    margin: 0 auto; 
+    background-color: rgb(255, 87, 34); /*rgb(32, 32, 32);*/
+    color: #fff; /*rgb(255, 87, 34);*/
+    border: 6px solid rgb(32, 32, 32); /*rgb(255, 87, 34);*/
+    border-radius: 10px;
+    display: grid;
+    grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+    -webkit-box-shadow: 0px 0px 14px -2px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 14px -2px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 14px -2px rgba(0,0,0,0.75);
+}
+
+.game > div {
+  border: 6px solid rgb(32, 32, 32); /*rgb(255, 87, 34);*/
+  font-family: Helvetica;
+  font-weight: bold;
+  height: 4em;
+  font-size:20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} 
+.botao {
+    width: 90%;
+}
+}
