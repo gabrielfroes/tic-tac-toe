@@ -6,6 +6,7 @@ body {
 }
 
 .game {
+
   width: 100vw;
   height: 100vw;
   margin: 0 auto;
@@ -13,6 +14,16 @@ body {
   color: #fff;
   display: grid;
   grid-template: repeat(3, 1fr) / repeat(3, 1fr)
+  width: 600px;
+	height: 600px;
+	margin: 0 auto;
+  background-color: #34495e;
+  color: #fff;
+  border: 6px solid #2c3e50;
+  border-radius: 10px;
+	display: grid;
+	grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+
 }
 
 .game>div {
@@ -26,6 +37,7 @@ body {
 }
 
 .btn {
+<<<<<<< HEAD
   border: 5px solid #2c3e50;
   background-color: #34495e;
   color: white;

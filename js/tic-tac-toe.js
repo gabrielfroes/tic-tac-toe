@@ -58,7 +58,7 @@ const tic_tac_toe = {
         });
         swal({
             title: 'Winner',
-            text: 'Congratilations',
+            text: 'Congratulations',
             icon: 'success',
             closeModal: true,
             className: 'modal-winner',
