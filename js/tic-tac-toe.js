@@ -86,6 +86,19 @@ const tic_tac_toe = {
 
     game_is_over() {
         this.gameover = true;
+        swal({
+            title: 'TIED',
+            text: 'Try Again',
+            icon: 'warning',
+            closeModal: true,
+            className: 'modal-winner',
+            button: {
+                text: 'Restart'
+            }
+
+        }).then(() => {
+            this.restart()
+        })
         console.log('GAME OVER');
     },
 
