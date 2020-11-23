@@ -8,11 +8,57 @@ body {
 .game {
   width: 100vw;
   height: 100vw;
-  margin: 0 auto;
+  background-color: #34495e;
+  color: #fff;
+  display: none;
+  grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+}
+
+.telaInicial, .gameOver{
+  border: 12px solid #2c3e50;
+  width: 75vw;
+  height: 100vw;
   background-color: #34495e;
   color: #fff;
   display: grid;
-  grid-template: repeat(3, 1fr) / repeat(3, 1fr)
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 6px;
+  align-items: center;
+}
+
+.gameOver{
+  display: none;
+}
+
+.elementosGameOver, .elementosInicial{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  justify-content: space-around;
+}
+
+#textWinner, #textInicial, #nomeWinner{
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  font-size: 5rem; 
+}
+
+#nomeWinner{
+  font-size: 2rem;
+  line-height: 3rem;
+}
+
+#iniciarJogo, #jogarNovamente{
+  align-self: center;
+  width: 200px;
+  height: 100px;
+  border: 5px solid #2c3e50;
+  background-color: #34495e;
+  color: white;
+  margin-top: 10px;
 }
 
 .game>div {
@@ -30,7 +76,8 @@ body {
   background-color: #34495e;
   color: white;
   margin-top: 10px;
-  padding: 10px 20px
+  padding: 10px 20px;
+  display: none;
 }
 
 .game > div.winner {
@@ -41,16 +88,33 @@ body {
   color: blue;
 }
 
+.none{
+  display: none;
+}
+
+.grid{
+  display: grid;
+}
+
 @media (min-width: 600px) {
-  .game {
+  .game, .telaInicial {
     width: 600px;
-    height: 600px;
+    height: 610px;
     border-radius: 10px;
     border: 6px solid #2c3e50;
+    margin-top: 10px;
+  }
+
+  .gameOver{
+    width: 600px;
+    height: 610px;
+    border-radius: 10px;
+    border: 12px solid #2c3e50;
+    margin-top: 10px;
   }
 
   .game>div {
-    border-radius: 2px;
+    border-radius: 1px;
   }
 }
 
@@ -59,3 +123,4 @@ body {
     cursor: pointer
   }
 }
+

@@ -1,22 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Tic Tac Toe</title>
-    <link rel="stylesheet" href="css/style.css">
+        <title> Jogo da Velha</title>
+        <link rel="stylesheet"  href="css/style.css">
 </head>
 <body>
-    
-    <div class='game'></div>
-    <button class="btn" onclick="tic_tac_toe.restart()" title="Restart this game">Restart</button>
+    <!-- Tela Inicial, iniciar o jogo -->
+    <div class="telaInicial">
+        <div class="elementosInicial">
+            <h1 id="textInicial"> BORA <br> JOGAR</h1>
+            <button id="iniciarJogo" onclick="jogoVelha.start()"> Iniciar </button>
+        </div>  
+    </div>
 
-    <script src="js/tic-tac-toe.js"></script>
-    <script>
-        tic_tac_toe.init( document.querySelector('.game') );
-        tic_tac_toe.start();
-    </script>
-    
+    <!-- Onde o jogo vai ser executado -->
+    <div class="game"></div>
+
+    <!-- Tela de game over, com a letra do vencedor e o botão de jogar novamente -->
+    <div class="gameOver">
+        <div class="elementosGameOver">
+            <h1 id="textWinner"> GAME <br> OVER</h1>
+                <h1 id="nomeWinner"></h1>
+            <button id="jogarNovamente" onclick="jogoVelha.jogarNovamente()"> Jogar Novamente! </button>
+        </div>
+    </div>
+
+    <!-- Botão de reiniciar o jogo na tela do jogo sendo executado -->
+    <button class="btn" onclick="jogoVelha.restart()" title="Restart this game"> Restart </button>
+
+
+<script src="js/tic-tac-toe.js"></script>
+<script>
+    jogoVelha.init( document.querySelector(".game"));
+</script>
+
 </body>
 </html>
