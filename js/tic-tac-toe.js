@@ -56,6 +56,19 @@ const tic_tac_toe = {
             .querySelector(`div:nth-child(${position + 1})`)
             .classList.add('winner');
         });
+        swal({
+            title: 'Winner',
+            text: 'Congratulations',
+            icon: 'success',
+            closeModal: true,
+            className: 'modal-winner',
+            button: {
+                text: 'Restart'
+            }
+
+        }).then(() => {
+            this.restart()
+        })
       },
 
     check_winning_sequences(symbol) {
@@ -73,6 +86,19 @@ const tic_tac_toe = {
 
     game_is_over() {
         this.gameover = true;
+        swal({
+            title: 'TIED',
+            text: 'Try Again',
+            icon: 'warning',
+            closeModal: true,
+            className: 'modal-winner',
+            button: {
+                text: 'Restart'
+            }
+
+        }).then(() => {
+            this.restart()
+        })
         console.log('GAME OVER');
     },
 
