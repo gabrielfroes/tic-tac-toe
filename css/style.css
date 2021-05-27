@@ -1,8 +1,35 @@
 body {
   margin: 0;
+  background-color: #bbbbbb;
+  /* display: flex; */
+  
+  width: 50vw;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+}
+
+
+.winn{
+  font-size: 2rem;
+  position: absolute;
+  left: 65vw;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  align-self: center;
+  margin: 0 auto;
+}
+
+.green{
+  color: #4BB543 ;
+  font-size: 3rem;
+  font-weight: 400;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.red{
+  color: #F32013 ;
 }
 
 .game {
