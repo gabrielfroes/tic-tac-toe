@@ -12,6 +12,7 @@ const tic_tac_toe = {
             },
     container_element: null,
     gameover: false,
+    plays: 0,
     winning_sequences: [
                         [0,1,2],
                         [3,4,5],
@@ -35,15 +36,27 @@ const tic_tac_toe = {
         this.board[position] = currentSymbol;
         this.draw();
 
+        this.plays = this.plays + 1;
         const winning_sequences_index = this.check_winning_sequences(currentSymbol);
         if (this.is_game_over()){
             this.game_is_over();
         }
+        console.log(this.symbols.turn_index);
         if (winning_sequences_index >= 0) {
             this.game_is_over();
             this.stylize_winner_sequence(this.winning_sequences[winning_sequences_index]);
+            document.getElementsByClassName('winn')[0].innerHTML= this.symbols.turn_index === 0 ? "O WINS": "X WINS";
+            document.getElementsByClassName('winn')[0].classList.add("green");
         } else {
             this.symbols.change();
+            if(this.plays == 9)
+            {
+                document.getElementsByClassName('winn')[0].innerHTML= "GAME DRAWN";
+                document.getElementsByClassName('winn')[0].classList.add("green");
+                document.getElementsByClassName('winn')[0].classList.add("red");
+            }
+            else
+                document.getElementsByClassName('winn')[0].innerHTML= this.symbols.turn_index === 0 ? "O Turn": "X Turn";
         }
 
         return true;
@@ -83,7 +96,8 @@ const tic_tac_toe = {
     start() {
         this.board.fill('');
         this.draw();
-        this.gameover = false;       
+        this.gameover = false;
+        this.plays = 0;
     },
 
     restart() {
@@ -94,6 +108,11 @@ const tic_tac_toe = {
             this.start();
             console.log('this game has been restarted!')
         }
+        
+        document.getElementsByClassName('winn')[0].innerHTML = this.symbols.turn_index === 0 ? "O Turn": "X Turn";
+        document.getElementsByClassName('winn')[0].classList.remove("green");
+        document.getElementsByClassName('winn')[0].classList.remove("red");
+
     },
 
     draw() {
