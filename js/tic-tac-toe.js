@@ -1,13 +1,15 @@
 // TIC TAC TOE
 const tic_tac_toe = {
-
     // ATTRIBUTES
     board: ['','','','','','','','',''],
     symbols: {
-                options: ['O','X'],
-                turn_index: 0,
+                options: {
+                    'IAM' : 'O',
+                    'IA' : 'X'
+                },
+                turn_index: 'IAM',
                 change(){
-                    this.turn_index = ( this.turn_index === 0 ? 1:0 );
+                    this.turn_index = ( this.turn_index === 'IAM' ? 'IA' : 'IAM' );
                 }
             },
     container_element: null,
@@ -32,6 +34,7 @@ const tic_tac_toe = {
         if (this.gameover || this.board[position] !== '') return false;
 
         const currentSymbol = this.symbols.options[this.symbols.turn_index];
+
         this.board[position] = currentSymbol;
         this.draw();
 
@@ -46,9 +49,23 @@ const tic_tac_toe = {
             this.symbols.change();
         }
 
+        if(this.symbols.turn_index === 'IA'){
+            this.dispatch_ia()
+        }
         return true;
     },
+    dispatch_ia(){
+        const allPositionEnabled = this.board.reduce((a, b , idx) => {
+            if(b === ''){
+                a.push(idx)
+            }
 
+            return a
+        }, [])
+
+        const random = parseInt(Math.random() * (allPositionEnabled.length - 1))
+        this.make_play(allPositionEnabled[random])
+    },
     stylize_winner_sequence(winner_sequence) {
         winner_sequence.forEach((position) => {
           this
