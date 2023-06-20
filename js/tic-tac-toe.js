@@ -77,6 +77,7 @@ const tic_tac_toe = {
     },
 
     is_game_over() {
+        this.gameover=true
         return !this.board.includes('');
     },
 
