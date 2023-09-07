@@ -8,10 +8,20 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    
+    <div class="score-board">
+        <div class="title">Scoreboard</div>
+        <div class="score">
+            <div id="x">X SCORE: 0</div>
+            <div id="turn">TURN: </div>
+            <div id="o">O SCORE: 0</div>
+        </div>
+        <button onclick="tic_tac_toe.reset_score()">RESET</button>
+    </div>
     <div class='game'></div>
     <button class="btn" onclick="tic_tac_toe.restart()" title="Restart this game">Restart</button>
-
+    <button id="btn-bot-mode" class="btn" onclick="tic_tac_toe.select_game_mode('bot')">Vs Bot</button>
+    <button id="btn-game-mode" class="btn" onclick="tic_tac_toe.select_game_mode('player')">Vs Player </button>
+    
     <script src="js/tic-tac-toe.js"></script>
     <script>
         tic_tac_toe.init( document.querySelector('.game') );
